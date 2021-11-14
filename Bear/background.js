@@ -1,8 +1,8 @@
-window.bears = {}
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  window.bears[request.url] = request.count
-})
+// background.js
 
-chrome.browserAction.onClicked.addListener(function (tab) {
-  chrome.tabs.create({url: 'popup.html'})
-})
+let color = '#3aa757';
+
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.storage.sync.set({ color });
+  console.log('Default background color set to %cgreen', `color: ${color}`);
+});
